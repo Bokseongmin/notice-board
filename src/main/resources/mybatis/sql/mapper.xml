@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper">
+    <insert id="insertInfo" parameterType="homeVo">
+        INSERT INTO     mvc(seq,
+                            title,
+                            content,
+                            writer,
+                            date)
+        VALUES          ((SELECT IFNULL(MAX(a.seq),0)+1 AS
+                                     seq FROM
+                              mvc as a),
+                         #{title},
+                         #{content},
+                         #{writer},
+                         date_format(now(), '%Y-%m-%d'));
+    </insert>
+
+    <select id="selectInfo" resultType="homeVo">
+        SELECT          seq,
+                        title,
+                        writer,
+                        date
+        FROM            mvc;
+    </select>
+
+    <select id="board_detail_select" resultType="homeVo">
+        SELECT          seq,
+                        title,
+                        content,
+                        writer,
+                        date
+        FROM            mvc
+        WHERE           seq=#{seq};
+    </select>
+
+    <update id="board_update" parameterType="homeVo">
+        UPDATE          mvc
+        SET             title = #{title},
+                        content = #{content}
+        WHERE           seq = #{seq};
+    </update>
+
+    <delete id="board_delete" parameterType="homeVo">
+        DELETE
+        FROM            mvc
+        WHERE           seq=#{seq};
+    </delete>
+</mapper>

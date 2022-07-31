@@ -1,0 +1,114 @@
+#wrap {}
+
+.top {
+    padding: 80px 0;
+}
+
+.main-title {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.main-title h1 {
+    color: #333;
+    font-weight: 450;
+    text-align: center;
+}
+
+.top-title {
+    width: 1100px;
+    margin: 0 auto;
+}
+
+#main {}
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.board-table {
+    font-size: 13px;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.board-table a {
+    color: #333;
+    display: inline-block;
+    cursor: pointer;
+    line-height: 1;
+    word-break: break-all;
+    vertical-align: middle;
+    text-decoration: none;
+    float: left;
+}
+
+.board-table a:hover {
+    text-decoration: underline;
+}
+
+.board-table th {
+    text-align: center;
+}
+
+.board-table .th-seq {
+    width: 100px;
+    text-align: center;
+}
+
+.board-table .th-writer {
+    width: 100px;
+    text-align: center;
+}
+
+.board-table .th-date {
+    width: 200px;
+}
+
+.board-table th,
+.board-table td {
+    padding: 15px 0;
+}
+
+.board-table tbody td {
+    border-top: 1px solid #e7e7e7;
+    text-align: center;
+}
+
+.board-table tbody th {
+    padding-left: 28px;
+    padding-right: 14px;
+    border-top: 1px solid #e7e7e7;
+    text-align: left;
+}
+
+.board-table tbody th p {
+    display: none;
+}
+
+.btn-info {
+    margin-top: 5px;
+    background: #555;
+    color: #fff;
+    float: right;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-info {
+    background: #555;
+    color: #fff;
+}
+
+.btn-info:hover,
+.btn-info:focus {
+    background: #333;
+    color: #fff;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
