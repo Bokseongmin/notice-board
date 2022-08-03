@@ -58,18 +58,19 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/board_list", method = RequestMethod.GET)
-    public void getListPage(Model model, @RequestParam("num") int num, @RequestParam("cntPerPage") int cntPerPage) throws Exception {
+    public String getListPage(Model model, @RequestParam(value = "nowPage",defaultValue="1") int nowPage, @RequestParam(value = "cntPerPage",defaultValue="10") int cntPerPage) throws Exception {
         Paging paging = new Paging();
 
         paging.setcntPerPage(cntPerPage);
         paging.setpageNumCnt(10);
-        paging.setnowPage(num);
+        paging.setnowPage(nowPage);
         paging.setcntPost(homeService.board_count());
 
         List<HomeVo> list = homeService.listPage(paging.getDisplayPost(), paging.getcntPerPage());
 
         model.addAttribute("list", list);
         model.addAttribute("page", paging);
-        model.addAttribute("select", num);
+        model.addAttribute("select", nowPage);
+        return "board_list";
     }
 }
