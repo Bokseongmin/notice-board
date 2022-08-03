@@ -58,7 +58,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/board_list", method = RequestMethod.GET)
-    public String getListPage(Model model, @RequestParam(value = "nowPage",defaultValue="1") int nowPage, @RequestParam(value = "cntPerPage",defaultValue="10") int cntPerPage) throws Exception {
+    public void getListPage(Model model, @RequestParam(value = "nowPage",defaultValue="1") int nowPage, @RequestParam(value = "cntPerPage",defaultValue="10") int cntPerPage) throws Exception {
         Paging paging = new Paging();
 
         paging.setcntPerPage(cntPerPage);
@@ -71,6 +71,5 @@ public class HomeController {
         model.addAttribute("list", list);
         model.addAttribute("page", paging);
         model.addAttribute("select", nowPage);
-        return "board_list";
     }
 }

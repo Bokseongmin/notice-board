@@ -24,7 +24,7 @@
 
         function cntPer() {
             var sel = document.getElementById('cntPerPage').value;
-            location.href = "board_list?num=${page.nowPage}&cntPerPage=" + sel;
+            location.href = "board_list?nowPage=${page.nowPage}&cntPerPage=" + sel;
         }
     </script>
 </head>
@@ -79,12 +79,12 @@
                     </table>
                     <div style="">
                         <c:if test="${page.prev}">
-                            <span>[ <a href="/board_list?num=${page.startPage - 1}&cntPerPage=${page.cntPerPage}">이전</a> ]</span>
+                            <span>[ <a href="/board_list?nowPage=${page.startPage - 1}&cntPerPage=${page.cntPerPage}">이전</a> ]</span>
                         </c:if>
                         <c:forEach begin="${page.startPage}" end="${page.lastPage}" var="nowPage">
                             <span>
                                 <c:if test="${select != nowPage}">
-                                    <a href="/board_list?num=${nowPage}&cntPerPage=${page.cntPerPage}">${nowPage}</a>
+                                    <a href="/board_list?nowPage=${nowPage}&cntPerPage=${page.cntPerPage}">${nowPage}</a>
                                 </c:if>
                                 <c:if test="${select == nowPage}">
                                     <b>${nowPage}</b>
@@ -92,7 +92,7 @@
                             </span>
                         </c:forEach>
                         <c:if test="${page.next}">
-                            <span>[ <a href="/board_list?num=${page.lastPage + 1}&cntPerPage=${page.cntPerPage}">다음</a> ]</span>
+                            <span>[ <a href="/board_list?nowPage=${page.lastPage + 1}&cntPerPage=${page.cntPerPage}">다음</a> ]</span>
                         </c:if>
                     </div>
                     <input class="btn-info" type="button" value="글 등록" onclick="board_insert()">
