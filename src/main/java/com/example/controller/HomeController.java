@@ -66,8 +66,7 @@ public class HomeController {
         paging.setnowPage(num);
         paging.setcntPost(homeService.board_count());
 
-        List<HomeVo> list = null;
-        list = homeService.listPage(paging.getDisplayPost(), paging.getcntPerPage());
+        List<HomeVo> list = homeService.listPage(paging.getDisplayPost(), paging.getcntPerPage());
 
         model.addAttribute("list", list);
         model.addAttribute("page", paging);
