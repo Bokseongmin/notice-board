@@ -14,4 +14,8 @@ public interface HomeService {
     void board_update(HomeVo vo)throws Exception;
 
     void board_delete(HomeVo vo)throws Exception;
+
+    int board_count()throws Exception;
+
+    public List listPage(int displayPost, int postNum) throws Exception;
 }

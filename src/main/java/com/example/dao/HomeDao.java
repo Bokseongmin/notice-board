@@ -3,6 +3,7 @@ package com.example.dao;
 import com.example.vo.HomeVo;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository("homeDao")
@@ -26,5 +27,18 @@ public class HomeDao extends CommonDao {
 
     public void board_delete(HomeVo vo) {
         getSqlSession().delete("mapper.board_delete",vo);
+    }
+
+    public int board_count() {
+        return getSqlSession().selectOne("mapper.board_count");
+    }
+
+    public List<HomeVo> board_list(int displayPost, int postNum) throws Exception{
+        HashMap<String,Integer> data = new HashMap<String, Integer>();
+
+        data.put("displayPost", displayPost);
+        data.put("postNum",postNum);
+
+        return getSqlSession().selectList("mapper.board_list",data);
     }
 }

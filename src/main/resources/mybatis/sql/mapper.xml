@@ -47,4 +47,20 @@
         FROM            mvc
         WHERE           seq=#{seq};
     </delete>
+
+    <select id="board_count" resultType="int">
+        SELECT          COUNT(*)
+        FROM            mvc;
+    </select>
+    <select id="board_list" resultType="hashMap" parameterType="homeVo">
+        SELECT          seq,
+                        title,
+                        content,
+                        writer,
+                        date
+        FROM            mvc
+        WHERE           seq > 0
+        ORDER BY        seq DESC, date DESC
+        LIMIT           #{displayPost}, #{postNum}
+    </select>
 </mapper>

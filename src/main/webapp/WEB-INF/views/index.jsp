@@ -20,6 +20,10 @@
             document.searchform.action = "/board_detail_select.do?seq="+seq;
             document.searchform.submit()
         }
+        function selChange() {
+            var sel = document.getElementById('cntPerPage').value;
+            location.href="boardList?nowPage=${paging.nowPage}&cntPerPage="+sel;
+        }
     </script>
 </head>
 <body>
@@ -36,6 +40,18 @@
             <form method="post" name="searchform" id="id_searchform">
             <div class="container">
                 <table class="board-table">
+                    <div style="margin-bottom: 5px; float: right;">
+                        <select id="cntPerPage" name="sel" onchange="selChange()">
+                            <option value="5"
+                                    <c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄 보기</option>
+                            <option value="10"
+                                    <c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄 보기</option>
+                            <option value="15"
+                                    <c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄 보기</option>
+                            <option value="20"
+                                    <c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄 보기</option>
+                        </select>
+                    </div> <!-- 옵션선택 끝 -->
                     <thead>
                     <tr>
                         <th scope="col" class="th-seq">번호</th>

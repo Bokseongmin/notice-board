@@ -32,4 +32,12 @@ public class HomeServiceImpl implements HomeService{
     public void board_delete(HomeVo vo) throws Exception{
         homeDao.board_delete(vo);
     }
+
+    public int board_count()throws Exception{
+        return homeDao.board_count();
+    }
+
+    public List listPage(int displayPost, int postNum) throws Exception {
+        return homeDao.board_list(displayPost, postNum);
+    }
 }
