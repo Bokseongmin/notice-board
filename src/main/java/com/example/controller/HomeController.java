@@ -72,4 +72,25 @@ public class HomeController {
         model.addAttribute("page", paging);
         model.addAttribute("select", nowPage);
     }
+
+    @RequestMapping(value = "/board_search", method = RequestMethod.GET)
+    public void getListSearch(Model model, @RequestParam(value = "nowPage",defaultValue="1") int nowPage,
+                              @RequestParam(value = "cntPerPage",defaultValue="10") int cntPerPage,
+                              @RequestParam(value = "searchType", required = false, defaultValue="") String searchType,
+                              @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword) throws Exception {
+        Paging paging = new Paging();
+
+        paging.setcntPerPage(cntPerPage);
+        paging.setpageNumCnt(10);
+        paging.setnowPage(nowPage);
+        paging.setcntPost(homeService.search_count(searchType, keyword));
+        paging.setsearchType(searchType);
+        paging.setkeyword(keyword);
+
+        List<HomeVo> list = homeService.listPageSearch(paging.getDisplayPost(), paging.getcntPerPage(), searchType, keyword);
+
+        model.addAttribute("list", list);
+        model.addAttribute("page", paging);
+        model.addAttribute("select", nowPage);
+    }
 }

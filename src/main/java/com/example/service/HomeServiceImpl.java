@@ -40,4 +40,11 @@ public class HomeServiceImpl implements HomeService{
     public List listPage(int displayPost, int postNum) throws Exception {
         return homeDao.board_list(displayPost, postNum);
     }
+    public List<HomeVo> listPageSearch(
+            int displayPost, int postNum, String searchType, String keyword) throws Exception {
+        return  homeDao.listPageSearch(displayPost, postNum, searchType, keyword);
+    }
+    public int search_count(String searchType, String keyword) throws Exception {
+        return homeDao.search_count(searchType, keyword);
+    }
 }

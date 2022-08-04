@@ -41,4 +41,26 @@ public class HomeDao extends CommonDao {
 
         return getSqlSession().selectList("mapper.board_list",data);
     }
+    public List<HomeVo> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception {
+
+        HashMap<String, Object> data = new HashMap<String, Object>();
+
+        data.put("displayPost", displayPost);
+        data.put("postNum", postNum);
+
+        data.put("searchType", searchType);
+        data.put("keyword", keyword);
+
+        return getSqlSession().selectList("mapper.board_search", data);
+    }
+
+    public int search_count(String searchType, String keyword) throws Exception {
+
+        HashMap data = new HashMap();
+
+        data.put("searchType", searchType);
+        data.put("keyword", keyword);
+
+        return getSqlSession().selectOne("mapper.search_count", data);
+    }
 }

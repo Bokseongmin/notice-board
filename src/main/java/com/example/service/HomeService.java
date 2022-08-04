@@ -18,4 +18,8 @@ public interface HomeService {
     int board_count()throws Exception;
 
     public List listPage(int displayPost, int postNum) throws Exception;
+
+    public List<HomeVo> listPageSearch(
+            int displayPost, int postNum, String searchType, String keyword) throws Exception;
+    public int search_count(String searchType, String keyword) throws Exception;
 }

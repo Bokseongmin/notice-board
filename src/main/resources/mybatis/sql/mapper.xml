@@ -63,4 +63,50 @@
         ORDER BY        seq DESC, date DESC
         LIMIT           #{displayPost}, #{postNum}
     </select>
+    <select id="board_search" parameterType="hashMap" resultType="homeVo">
+        SELECT          seq, title, content, writer, date
+        FROM            mvc
+
+        <if test='searchType.equals("title")'>
+            WHERE           title LIKE concat('%', #{keyword}, '%')
+        </if>
+
+        <if test='searchType.equals("content")'>
+            WHERE           content LIKE concat('%', #{keyword}, '%')
+        </if>
+
+        <if test='searchType.equals("title_content")'>
+            WHERE           title LIKE concat('%', #{keyword}, '%')
+            or              content LIKE concat('%', #{keyword}, '%')
+        </if>
+
+        <if test='searchType.equals("writer")'>
+            WHERE           writer LIKE concat('%', #{keyword}, '%')
+        </if>
+        ORDER BY        seq DESC
+        LIMIT           #{displayPost}, #{postNum}
+    </select>
+
+    <select id="search_count" parameterType="hashMap" resultType="int">
+        SELECT          count(seq)
+        FROM            mvc
+
+        <if test='searchType.equals("title")'>
+            WHERE           title LIKE concat('%', #{keyword}, '%')
+        </if>
+
+        <if test='searchType.equals("content")'>
+            WHERE content LIKE concat('%', #{keyword}, '%')
+        </if>
+
+        <if test='searchType.equals("title_content")'>
+            WHERE title LIKE concat('%', #{keyword}, '%')
+            or content LIKE concat('%', #{keyword}, '%')
+        </if>
+
+        <if test='searchType.equals("writer")'>
+            WHERE writer LIKE concat('%', #{keyword}, '%')
+        </if>
+
+    </select>
 </mapper>

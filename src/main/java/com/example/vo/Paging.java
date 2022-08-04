@@ -3,6 +3,7 @@ package com.example.vo;
 public class Paging {
     // 현재 페이지, 게시물 총 갯수, 페이지당 글 갯수, 페이징 번호, 보여줄 게시물, 보여줄 페이징 갯수
     private int nowPage, cntPost, cntPerPage, pageNum, displayPost, pageNumCnt, startPage, lastPage;
+    private String searchType, keyword, searchType_keyword;
 
     // 이전, 다음
     private boolean prev, next;
@@ -79,5 +80,29 @@ public class Paging {
         next = lastPage * pageNumCnt >= cntPost ? false : true;
 
         displayPost = (nowPage - 1) * cntPerPage;
+    }
+
+    public String getsearchType_keyword() {
+        if(searchType.equals("") || keyword.equals("")) {
+            return "";
+        } else {
+            return "&searchType=" + searchType + "&keyword=" + keyword;
+        }
+    }
+
+    public String getsearchType() {
+        return searchType;
+    }
+
+    public void setsearchType(String searchType) {
+        this.searchType = searchType;
+    }
+
+    public String getkeyword() {
+        return keyword;
+    }
+
+    public void setkeyword(String keyword) {
+        this.keyword = keyword;
     }
 }
