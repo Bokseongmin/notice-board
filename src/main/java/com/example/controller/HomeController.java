@@ -19,6 +19,7 @@ public class HomeController {
     @Resource
     private HomeService homeService;
 
+
     @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
     public String index(Locale locale, Model model) throws Exception {
         List<HomeVo> list = homeService.selectInfo();
@@ -57,8 +58,8 @@ public class HomeController {
         return "forward:/";
     }
 
-    @RequestMapping(value = "/board_list", method = RequestMethod.GET)
-    public void getListPage(Model model, @RequestParam(value = "nowPage",defaultValue="1") int nowPage, @RequestParam(value = "cntPerPage",defaultValue="10") int cntPerPage) throws Exception {
+    @RequestMapping(value = "/board_list", method = {RequestMethod.GET, RequestMethod.POST})
+    public void getListPage(Model model, @RequestParam(value = "nowPage", defaultValue = "1") int nowPage, @RequestParam(value = "cntPerPage", defaultValue = "10") int cntPerPage) throws Exception {
         Paging paging = new Paging();
 
         paging.setcntPerPage(cntPerPage);
@@ -73,10 +74,10 @@ public class HomeController {
         model.addAttribute("select", nowPage);
     }
 
-    @RequestMapping(value = "/board_search", method = RequestMethod.GET)
-    public void getListSearch(Model model, @RequestParam(value = "nowPage",defaultValue="1") int nowPage,
-                              @RequestParam(value = "cntPerPage",defaultValue="10") int cntPerPage,
-                              @RequestParam(value = "searchType", required = false, defaultValue="") String searchType,
+    @RequestMapping(value = "/board_search", method = {RequestMethod.GET, RequestMethod.POST})
+    public void getListSearch(Model model, @RequestParam(value = "nowPage", defaultValue = "1") int nowPage,
+                              @RequestParam(value = "cntPerPage", defaultValue = "10") int cntPerPage,
+                              @RequestParam(value = "searchType", required = false, defaultValue = "") String searchType,
                               @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword) throws Exception {
         Paging paging = new Paging();
 

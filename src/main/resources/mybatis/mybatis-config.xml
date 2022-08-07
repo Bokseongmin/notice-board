@@ -9,8 +9,6 @@
     </settings>
     <typeAliases>
         <typeAlias type="com.example.vo.HomeVo" alias="HomeVo"/>
+        <typeAlias type="com.example.vo.ReplyVo" alias="ReplyVo"/>
     </typeAliases>
-    <mappers>
-        <mapper resource="/mybatis/sql/mapper.xml"/>
-    </mappers>
 </configuration>

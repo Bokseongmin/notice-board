@@ -18,7 +18,7 @@
         }
 
         function board_detail_select(seq) {
-            document.searchform.action = "/board_detail_select.do?seq=" + seq;
+            document.searchform.action = "/board_view?b_seq=" + seq;
             document.searchform.submit()
         }
 
