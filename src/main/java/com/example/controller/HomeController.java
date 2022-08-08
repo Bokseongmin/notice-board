@@ -1,8 +1,10 @@
 package com.example.controller;
 
 import com.example.service.HomeService;
+import com.example.service.ReplyService;
 import com.example.vo.HomeVo;
 import com.example.vo.Paging;
+import com.example.vo.ReplyVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,8 @@ public class HomeController {
     @Resource
     private HomeService homeService;
 
+    @Resource
+    private ReplyService replyService;
 
     @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
     public String index(Locale locale, Model model) throws Exception {
@@ -93,5 +97,15 @@ public class HomeController {
         model.addAttribute("list", list);
         model.addAttribute("page", paging);
         model.addAttribute("select", nowPage);
+    }
+
+    @RequestMapping(value = "/board_view", method = {RequestMethod.GET, RequestMethod.POST})
+    public void getView(@RequestParam("b_seq") int b_seq, Model model, HomeVo vo) throws Exception {
+        vo.setSeq(b_seq);
+        vo = homeService.board_detail_select(vo);
+        model.addAttribute("post", vo);
+
+        List<ReplyVo> reply = replyService.list(b_seq);
+        model.addAttribute("reply",reply);
     }
 }
