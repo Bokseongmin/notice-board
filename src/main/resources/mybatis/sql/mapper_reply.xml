@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper_reply">
+    <!-- 댓글 조회 -->
+    <select id="reply_list" parameterType="int" resultType="replyVo">
+        SELECT
+            b_seq, seq, writer, content, date
+        FROM mvc_reply
+        WHERE b_seq = #{b_seq}
+    </select>
+
+    <!-- 댓글 작성 -->
+    <insert id="reply_write" parameterType="replyVo">
+        INSERT INTO mvc_reply(b_seq, writer, content, date)
+            VALUE(#{b_seq}, #{writer}, #{content}, #{date})
+    </insert>
+
+    <!-- 댓글 수정 -->
+    <update id="reply_modify" parameterType="replyVo">
+        update mvc_reply SET
+                             writer = #{writer},
+                             content = #{content}
+        WHERE seq = #{seq}
+          AND b_seq = #{b_seq}
+    </update>
+
+    <!-- 댓글 삭제 -->
+    <delete id="reply_delete" parameterType="replyVo">
+        DELETE FROM mvc_reply
+        WHERE seq = #{seq}
+          AND b_seq = ${b_seq}
+    </delete>
+</mapper>
